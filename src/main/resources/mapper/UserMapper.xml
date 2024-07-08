@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sp_test.Dao.UserDao">
+    <select id="getAllUsers" resultType="UserDto">
+        SELECT *
+        FROM account
+    </select>
+
+    <select id="getUserById" parameterType="UserDto" resultType="UserDto">
+        SELECT *
+        FROM account where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="UserDto">
+        INSERT INTO account (id, pw, name, nick)
+        VALUES (#{id}, #{pw}, #{name}, #{nick})
+    </insert>
+</mapper>

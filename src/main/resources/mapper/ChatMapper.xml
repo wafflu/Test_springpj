@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sp_test.Dao.ChatDao">
+    <select id="select_chatlist" parameterType="string" resultType="ChatRoomDto">
+        select *
+        from chat_room
+        where (seller_id = #{acid} or buyer_id = #{acid}) and seller_state = 'Y' and buyer_state = 'Y' order by r_date desc
+    </select>
+
+    <insert id="insert_chatroom" parameterType="ChatRoomDto" useGeneratedKeys="true" keyProperty="no">
+        insert into chat_room (sale_no, seller_id, seller_nk, buyer_id, buyer_nk, first_id, last_id)
+        values (#{no}, #{seller_id}, #{seller_nk}, #{buyer_id}, #{buyer_nk}, #{first_id}, #{last_id})
+    </insert>
+</mapper>
